@@ -1,0 +1,25 @@
+obj DATA is
+sorts Data .
+endo
+
+obj STACK [E :: DATA] is
+sorts Stack .
+protecting NAT .
+
+op empty : -> Stack .
+op push : Data Stack -> Stack .
+op pop : Stack -> Stack .
+op top : Stack -> Data .
+op length : Stack -> Nat .
+
+var S : Stack .
+var X : Data .
+var Y : Data .
+eq pop(push(X,S)) = S .
+eq top(push(X,S)) = X .
+eq length(empty) = 0 .
+eq length(push(X,S)) = 1 + length(S) .
+eq pop(S,Y) = 
+
+
+endo
