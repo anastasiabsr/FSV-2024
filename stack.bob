@@ -1,0 +1,43 @@
+obj DATA is
+sorts Element .
+endo
+
+obj STACK [E :: DATA] is
+sorts Stack .
+protecting NAT .
+
+op empty : -> Stack .
+op push : Element Stack -> Stack .
+op pop : Stack -> Stack .
+op top : Stack -> Element .
+op length : Stack -> Nat .
+
+op topless : -> Element .
+op underflow : -> Stack .
+
+var S : Stack .
+var X : Element .
+
+eq pop(push(X,S)) = S .
+eq top(push(X,S)) = X .
+eq length(empty) = 0 .
+eq length(push(X,S)) = 1 + length(S) .
+
+eq pop(empty) = underflow .
+eq top(empty) = topless .
+
+endo 
+
+var Y : Element .
+var S2 : Stack .
+var A3 : Element .
+var A2 : Element .
+reduce pop(push(X,S)) == S .
+reduce top(pop(push(X,push(Y,S)))) == Y .
+reduce S == push(X,S2)
+implies push(top(S),pop(S)) == S .
+reduce S == push(X,S2)
+implies length(pop(S)) + 1 == length(S) .
+reduce top(push(A3, pop(pop(push(A2, empty))))) .
+reduce top(push(3, empty)) .
+reduce top(push(A2, S2)) .

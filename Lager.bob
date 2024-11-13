@@ -1,0 +1,21 @@
+
+obj Lager is
+
+  sorts Ladungstraeger Fach Lager String.
+  protecting NAT .
+  op ladungstraeger : Nat String -> Ladungstraeger .
+  op fach : Nat Nat Nat -> Fach .
+
+  op leeresLager : -> Lager .
+  op einlagern : Ladungstraeger Fach Lager -> Fach .
+  op auslagern : Nat Lager -> Lager .
+
+  var L : Lager .
+  var F : Fach .
+  var K : Nat .
+  var D : String .
+
+
+  eq auslagern(K einlagern(ladungstraeger(K D) F L)) = L .
+
+endo
