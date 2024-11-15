@@ -39,5 +39,5 @@ implies push(top(S),pop(S)) == S .
 reduce S == push(X,S2)
 implies length(pop(S)) + 1 == length(S) .
 reduce top(push(A3, pop(pop(push(A2, empty))))) .
-reduce top(push(3, empty)) .
+reduce top(push(A3, empty)) .
 reduce top(push(A2, S2)) .

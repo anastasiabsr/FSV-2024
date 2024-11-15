@@ -14,8 +14,9 @@ obj Lager is
   var F : Fach .
   var K : Nat .
   var D : String .
+  var LT : Ladungstraeger .
 
-
-  eq auslagern(K einlagern(ladungstraeger(K D) F L)) = L .
-
+  eq ladungstraeger(K D) =  LT .
+  eq einlagern(ladungstraeger(K D) F L) = F .
+  eq auslagern(K L) = L .
 endo
