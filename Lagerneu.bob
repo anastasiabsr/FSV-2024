@@ -1,0 +1,46 @@
+obj Ladungstraeger is
+    sorts Ladungstraeger Kennung Beschreibung .
+    op new : Kennung Beschreibung -> Ladungstraeger
+    op ken : Ladungstraeger -> Kennung .
+    op beschr : Ladungstraeger -> Beschreibung .
+
+    var K : Kennung .
+    var B : Beschreibung .
+
+    eq ken(new(K, B)) = K .
+
+obj Fach is
+    sorts Gang Ebene Regal Fach .
+    op new : Gang Ebene Regal -> Fach .
+    op regal : Fach -> Regal .
+
+    var G : Gang .
+    var E : Ebene .
+    var F : Fach .
+    var R : Regal .
+    
+    eq regal(new(G E F)) = R .
+
+obj Lager is
+  sorts Ladungstraeger Fach Lager String .
+  protecting NAT .
+  op ladungstraeger : Nat String -> Ladungstraeger .
+  op fach : Nat Nat Nat -> Fach .
+  op lager : -> Lager .
+  op string : -> String .
+
+  op leeresLager : -> Lager .
+  op einlagern : Ladungstraeger Fach Lager -> Fach .
+  op auslagern : Nat Lager -> Lager .
+
+  var L : Lager .
+  var K : Nat .
+  var F : Fach .
+  var D : String .
+  var LT : Ladungstraeger .
+
+  eq einlagern(LT F L) = F .
+  eq einlagern(ladungstraeger(K D) F L) = F .
+  eq auslagern(K L) = L .
+
+endo
