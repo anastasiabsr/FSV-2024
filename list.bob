@@ -1,0 +1,38 @@
+*** Spezifikation einer Liste ganzer Zahlen
+
+
+obj LIST-OF-INT is
+   sort List .
+   protecting INT .
+   op nil : -> List .
+   op cons : Int List -> List .
+   op length : List -> Int .
+   op append : List List -> List .
+   op head : List -> Int .
+   op tail : List -> List .
+
+   var I : Int . 
+   var L : List .
+   eq length(nil) = 0 .
+   eq tail(cons(I,L)) = L .
+   eq length(cons(I,L)) = 1 + length(L) .
+   eq length(tail(L)) = length(L) - 1 .
+
+   eq head(cons(I,L)) = I .
+   eq cons(head(L), tail(L)) = L .
+
+   vars L1 L2 : List .
+   eq append(nil, L) = L .
+   eq append(cons(I,L1), L2) = cons(I, append(L1, L2)) .
+
+
+   
+endo
+
+red length(cons(17,cons(-4,cons(329,nil)))) .
+red length(nil) .                     ***> should be 0
+red length(cons(I, nil)) .            ***> should be 1
+red length(cons(I, cons(I, nil))) .   ***> should be 2
+red head(cons(3,nil)) .               ***> should be 3
+*** es wird ein leerer Kopf ausgegeben
+red head(nil) .

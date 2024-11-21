@@ -1,0 +1,49 @@
+*** Spezifikation einer Liste ganzer Zahlen
+
+
+obj LIST-OF-INT is
+   sort List .
+   protecting INT .
+   op nil : -> List .
+   op cons : Int List -> List .
+   op length : List -> Int .
+   op append : List List -> List .
+   op head : List -> Int .
+   op tail : List -> List .
+
+   var I : Int . 
+   var L : List .
+   eq length(nil) = 0 .
+   eq tail(cons(I,L)) = L .
+   eq length(cons(I,L)) = 1 + length(L) .
+   eq length(tail(L)) = length(L) - 1 .
+
+   eq head(cons(I,L)) = I .
+   eq cons(head(L), tail(L)) = L .
+
+   vars L1 L2 : List .
+   eq append(nil, L) = L .
+   eq append(cons(I,L1), L2) = cons(I, append(L1, L2)) .
+
+
+   
+endo
+
+vars L1 L2 L3 : List .
+*** (a) forall L1, L2, L3 : append(L1, append(L2, L3)) == append(append(L1, L2), L3) .
+*** (b)
+red append(nil, append(L2, L3)) == append(append(nil, L2), L3) .
+red append(nil, append(L2, L3)) == append(L2, L3) .
+red append(append(nil, L2), L3) == append(L2, L3) .
+
+*** (c)
+append(L1, append(L2, L3)) == append(append(L1, L2), L3) .
+
+*** (d)
+append(cons(I, L1), append(L2, L3)) == append(append(cons(I, L1), L2), L3) .
+append(L1, append(L2, L3)) == append(append(L1, L2), L3)
+cons(I, append(L1, append(L2, L3))) == cons(I, append(append(L1, L2), L3))
+
+
+
+
